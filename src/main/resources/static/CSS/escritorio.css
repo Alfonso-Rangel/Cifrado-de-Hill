@@ -1,0 +1,290 @@
+body {
+    background-color: #F3F5FC;
+}
+
+#github-logo {
+    position: relative;
+    margin-top: 2%;
+    left: 5.56%;
+    height: 4.69%;
+    width: 3.33%;
+}
+
+/* ----- ----- ----- CAMPO DE TEXTO ----- ----- ----- */
+.seccion-texto {
+    position: absolute;
+    top: 10%;
+    left: 16.67%;
+    height: 65%;
+    width: 40%;
+    overflow: hidden;
+}
+
+.texto-area {
+    position: relative;
+    top: 2%;
+    height: 45%;
+    width: 100%;
+    resize: none;
+    border: 0;
+    outline: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    color: #0A3871;
+    padding: 5% 0;
+    background: transparent;
+}
+
+.llave-area {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    height: 30%;
+    width: 50%;
+    resize: none;
+    border: 0;
+    outline: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #0A3871;
+
+    text-align: left;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+}
+
+
+.llave-area input[type="number"] {
+    color: #0A3871; /* Cambia el color del texto dentro del área de texto */
+    font-family: 'Inter', sans-serif; /* Cambia la fuente del texto dentro del área de texto */
+    font-size: 1rem; /* Cambia el tamaño del texto dentro del área de texto */
+    border: none; /* Elimina el borde del área de texto */
+    outline: none; /* Elimina el contorno del área de texto al hacer clic */
+    width: 95%; /* Cambia el ancho del campo de entrada */
+    height: 100%; /* Cambia la altura del campo de entrada */
+}
+
+.llave-area td, .llave-area th {
+    padding: 1%;
+}
+
+
+.llave-area tr:nth-child(odd) {
+    background-color: rgba(10, 56, 113, 0.25);
+}
+
+.llave-area tr:nth-child(even) {
+    background-color: rgba(10, 56, 113, 0.25);
+}
+
+
+.llave-area td:hover {
+    background-color: #FB667A;
+    transform: translate3d(2px, -2px, 0);
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+}
+
+.texto-area::placeholder {
+    color: transparent;
+}
+
+.texto-area:placeholder-shown ~ .texto-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: normal;
+    cursor: text;
+    top: 7%;
+}
+
+.texto-label {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    top: 3%;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #0A3871;
+}
+
+.llave-label {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    top: -5%;
+    display: compact;
+    transition: 0.2s;
+    font-size: 1.4rem;
+    color: #0A3871;
+}
+
+.texto-area:focus ~ .texto-label {
+    position: absolute;
+    top: -2.5%;
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    transition: 0.1s;
+    font-size: 1rem;
+    color: #0A3871;
+    margin-top: 4%;
+}
+
+/* ----- ----- ----- BOTONES ----- ----- ----- */
+#advertencia {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #495057;
+    position: absolute;
+    top: 75%;
+    left: 16.67%;
+}
+.seccion-botones {
+    position: absolute;
+    bottom: 11%;
+    left: 16.67%;
+    height: 6.54%;
+    width: 40%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton {
+    position: absolute;
+    height: 100%;
+    width: 48%;
+    font-family: 'Inter', sans-serif;
+    background-color: #D8DFE8;
+    border: 0.15rem solid #0A3871;
+    border-radius: 1.1rem;
+    color: #0A3871;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+.boton:hover {
+    color: #D8DFE8;
+    background-color: #0A3871;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.boton:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+#encriptar {
+    left: 0;
+}
+
+#desencriptar {
+    right: 0;
+}
+
+/* ----- ----- ----- COPIAR TEXTO ----- ----- ----- */
+#simbolo-hecho {
+    display: none;
+}
+
+.seccion-copiar {
+    position: absolute;
+    background-color: white;
+    text-align: center;
+    left: 60%;
+    top: 12%;
+    height: 80%;
+    width: 27.78%;
+    border-radius: 2rem;
+}
+
+#output-copiar {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: 67%;
+    width: 90%;
+    resize: none;
+    border: 0;
+    outline: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #0A3871;
+    text-align: justify;
+    background: transparent;
+    display: none;
+}
+
+#boton-copiar {
+    display: none;
+    position: absolute;
+    bottom: 4%;
+    left: 5%;
+    height: 8%;
+    width: 90%;
+}
+
+#boton-copiado-exitoso {
+    display: none;
+    position: absolute;
+    bottom: 4%;
+    left: 5%;
+    height: 8%;
+    width: 90%;
+    background-color: green;
+}
+
+.seccion-copiar img {
+    position: absolute;
+    top: 12%;
+    left: 5%;
+    width: 90%;
+}
+
+#mensaje-copiar {
+    position: absolute;
+    color: #343A40;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    top: 65%;
+    left: 5%;
+    height: 25%;
+    width: 90%;
+}
+
+#mensaje-copiar h1 {
+    position: absolute;
+    font-size: 1.4rem;
+    top: 0;
+    left: 5%;
+    height: 40%;
+    width: 90%;
+}
+
+#mensaje-copiar p {
+    position: absolute;
+    font-size: 1rem;
+    top: 45%;
+    left: 5%;
+    height: 40%;
+    width: 90%;
+    bottom: 0;
+}
+
+/* ----------------------------------------------*/
+.shake-horizontal{animation:shake-horizontal 0.8s linear both}@keyframes shake-horizontal { 0%,100%{transform:translateX(0)}10%,30%,50%,70%{transform:translateX(-10px)}20%,40%,60%{transform:translateX(10px)}80%{transform:translateX(8px)}90%{transform:translateX(-8px)}}
+/*
+    Animación generada por AnimatiSS
+    Licencia FreeBSD License
+    URL: https://xsgames.co/animatiss
+    Twitter: @xsgames_
+---------------------------------------------- */
+

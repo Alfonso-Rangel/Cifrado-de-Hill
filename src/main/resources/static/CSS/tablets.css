@@ -1,0 +1,93 @@
+@media screen and (width <= 768px) {
+    #github-logo {
+        margin-top: 5%;
+        height: 7%;
+        width: 7%;
+    }
+
+    .seccion-texto {
+        top: 14%;
+        left: 5.21%;
+        height: 42.59%;
+        width: 89.58%;
+    }
+
+    .texto-area {
+        font-size: 1.4rem;
+        padding: 7% 0;
+        height: 35%;
+    }
+
+    .texto-label {
+        top: 6%;
+        font-size: 1.4rem;
+    }
+
+    .texto-area:focus ~ .texto-label {
+        top: 0;
+        font-size: 1.4rem;
+        margin-top: 4%;
+    }
+
+    .texto-area:placeholder-shown ~ .texto-label {
+        font-size: 1.8rem;
+    }
+
+    #advertencia {
+        font-size: 0.8rem;
+        top: 56%;
+        left: 5.21%;
+    }
+
+    .seccion-botones {
+        top: 65%;
+        left: 5.21%;
+        height: 5.71%;
+        width: 89.58%;
+    }
+
+    .boton {
+        font-size: 1.2rem;
+        border-radius: 1.5rem;
+        height: 100%;
+        width: 45%;
+    }
+
+    .seccion-copiar {
+        top: 75%;
+        left: 5.21%;
+        height: 22%;
+        width: 89.58%;
+    }
+
+    #output-copiar {
+        height: 55%;
+    }
+
+    #boton-copiar {
+        left: 35%;
+        height: 30%;
+        width: 30%;
+    }
+
+    .seccion-copiar img {
+        display: none;
+    }
+
+    #mensaje-copiar {
+        top: 5%;
+        left: 5%;
+        height: 90%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #mensaje-copiar h1 {
+        font-size: 1rem;
+    }
+    #mensaje-copiar p {
+        font-size: 0.8rem;
+    }
+}
