@@ -7,15 +7,15 @@ public class CifrarController {
     @PostMapping("/cifrar")
     public String encriptarTexto(@RequestBody TextoConLlave textoConLlave) {
         String texto = textoConLlave.getTexto();
-        String llave = textoConLlave.getLlave();
+        int[] llave = textoConLlave.getLlave();
         // Lógica para encriptar el texto con la llave
         //String textoCifrado = cifrar(texto, llave);
-        return "Prueba cifrar\n" + texto + "\n" + llave;
+        return "";
     }
 
     public static class TextoConLlave {
         private String texto;
-        private String llave;
+        private int[] llave;
 
         public String getTexto() {
             return texto;
@@ -25,11 +25,11 @@ public class CifrarController {
             this.texto = texto;
         }
 
-        public String getLlave() {
+        public int[] getLlave() {
             return llave;
         }
 
-        public void setLlave(String llave) {
+        public void setLlave(int[] llave) {
             this.llave = llave;
         }
     }

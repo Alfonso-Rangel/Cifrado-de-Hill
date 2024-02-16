@@ -1,5 +1,16 @@
 function obtenerLlave() {
-    return "";
+    const llaveArreglo = [];
+    const tablaLlave = document.getElementById("llave");
+    const filas = tablaLlave.getElementsByTagName("tr");
+
+    for (let i = 0; i < filas.length; i++) {
+        const celdas = filas[i].getElementsByTagName("td");
+        for (let j = 0; j < celdas.length; j++) {
+            const input = celdas[j].getElementsByTagName("input")[0];
+            llaveArreglo.push(Number(input.value));
+        }
+    }
+    return llaveArreglo;
 }
 
 function encriptar() {
