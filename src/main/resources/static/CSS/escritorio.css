@@ -35,58 +35,6 @@ body {
     background: transparent;
 }
 
-.llave-area {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    height: 30%;
-    width: 50%;
-    resize: none;
-    border: 0;
-    outline: 0;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    color: #0A3871;
-
-    text-align: left;
-    overflow: hidden;
-    margin: 0 auto;
-    display: flex;
-}
-
-
-.llave-area input[type="number"] {
-    color: #0A3871; /* Cambia el color del texto dentro del área de texto */
-    font-family: 'Inter', sans-serif; /* Cambia la fuente del texto dentro del área de texto */
-    font-size: 1rem; /* Cambia el tamaño del texto dentro del área de texto */
-    border: none; /* Elimina el borde del área de texto */
-    outline: none; /* Elimina el contorno del área de texto al hacer clic */
-    width: 95%; /* Cambia el ancho del campo de entrada */
-    height: 100%; /* Cambia la altura del campo de entrada */
-}
-
-.llave-area td, .llave-area th {
-    padding: 1%;
-}
-
-
-.llave-area tr:nth-child(odd) {
-    background-color: rgba(10, 56, 113, 0.25);
-}
-
-.llave-area tr:nth-child(even) {
-    background-color: rgba(10, 56, 113, 0.25);
-}
-
-
-.llave-area td:hover {
-    background-color: #FB667A;
-    transform: translate3d(2px, -2px, 0);
-    transition-delay: 0s;
-    transition-duration: 0.4s;
-    transition-property: all;
-}
-
 .texto-area::placeholder {
     color: transparent;
 }
@@ -109,18 +57,6 @@ body {
     font-size: 1rem;
     color: #0A3871;
 }
-
-.llave-label {
-    position: relative;
-    font-family: 'Inter', sans-serif;
-    font-weight: normal;
-    top: -5%;
-    display: compact;
-    transition: 0.2s;
-    font-size: 1.4rem;
-    color: #0A3871;
-}
-
 .texto-area:focus ~ .texto-label {
     position: absolute;
     top: -2.5%;
@@ -133,6 +69,75 @@ body {
     margin-top: 4%;
 }
 
+.llave-label {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    top: -5%;
+    display: compact;
+    transition: 0.2s;
+    font-size: 1.4rem;
+    color: #0A3871;
+}
+
+.llave-area {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#generaMatriz {
+    width: 100px;
+    background-image: url("../Multimedia/dados.png");
+    background-position: center;
+    background-size: contain; /* Ajusta el tamaño de la imagen al botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    background-color: #F3F5FC;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+#generaMatriz:hover {
+    transform: translateY(-2px);
+}
+
+#generaMatriz:active {
+    transform: translateY(0);
+}
+
+.password-validations {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+    list-style: circle;
+}
+
+input.password {
+    display: flex;
+    height: 34px;
+    width: 80%;
+    /*
+    padding: 0 8px 0 8px;
+     */
+    border: 2px solid #0A3871;
+    font-size: 16px;
+
+    letter-spacing: 1px;
+}
+
+.instruccion {
+    color: #0A3871;
+}
+
+ul.password-validations li.valid {
+    color: green;
+    list-style: disc;
+}
 /* ----- ----- ----- BOTONES ----- ----- ----- */
 #advertencia {
     font-family: 'Inter', sans-serif;

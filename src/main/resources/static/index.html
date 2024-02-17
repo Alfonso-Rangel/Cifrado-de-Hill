@@ -14,32 +14,31 @@
     </head>
 
     <body>
-        <script src="script.js"></script>
         <img id="github-logo" src="Multimedia/logo-github.png" alt="Logo de GitHub">
 
         <section class="seccion-texto">
             <textarea class="texto-area" placeholder="Ingrese el texto" name="texto" id='texto' required></textarea>
             <label for="texto" class="texto-label">Ingrese el texto aquí</label>
             <label for="llave" class="llave-label">Ingrese la llave aquí</label>
-            <table class="llave-area" id="llave">
-                <tr>
-                    <td><input type="number" id="00" value="1"></td>
-                    <td><input type="number" id="01" value="0"></td>
-                    <td><input type="number" id="02" value="0"></td>
-                </tr>
-                <tr>
-                    <td><input type="number" id="10" value="0"></td>
-                    <td><input type="number" id="11" value="1"></td>
-                    <td><input type="number" id="12" value="0"></td>
-                </tr>
-                <tr>
-                    <td><input type="number" id="20" value="0"></td>
-                    <td><input type="number" id="21" value="0"></td>
-                    <td><input type="number" id="22" value="1"></td>
-                </tr>
-            </table>
+            <form class="llave-area" id="llave">
+                <div class="input-container">
+                    <input class="password" name="password" id="clave">
+                    <button id="boton-copiar-clave" type="button" onclick="copiarTextoClave()">
+                        <span id="simbolo-copiar-clave" class="material-symbols-outlined">content_copy</span>
+                    </button>
+                    <button id="generaMatriz" title="Genera una clave aleatoria" type="button" onclick="generarClave()"></button>
+                </div>
+
+                <ul class="password-validations">
+                    <li class="instruccion">Ingresa números separados por espacio</li>
+                    <li class="integer">Sólo se permiten números enteros</li>
+                    <li class="positive">Sólo se permiten números positivos</li>
+                    <li class="at-least-four">Al menos 4 números</li>
+                </ul>
+            </form>
+
         </section>
-        <p id="advertencia">&#x2755No se tomarán en cuenta mayúsculas ni acentos</p>
+        <p id="advertencia">&#x2755No se encriptarán acentos</p>
         <section class="seccion-botones">
             <button class="boton" id= "encriptar" type="button" onclick="encriptar()">Encriptar</button>
             <button class="boton" id= "desencriptar" type="button" onclick="desencriptar()">Desencriptar</button>
@@ -57,5 +56,6 @@
                 <p>Ingresa el texto que desees encriptar o desencriptar</p>
             </div>
         </section>
+        <script src="script.js"></script>
     </body>
 </html>

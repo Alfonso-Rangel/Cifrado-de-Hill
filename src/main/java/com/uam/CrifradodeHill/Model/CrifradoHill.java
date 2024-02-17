@@ -1,8 +1,16 @@
 package com.uam.CrifradodeHill.Model;
 
+import static com.uam.CrifradodeHill.Model.Matriz.inversa;
+
 public class CrifradoHill {
 
     public static String cifrar(String texto, int[][] clave) {
+        try {
+            inversa(clave);
+        } catch (ArithmeticException e) {
+            return e.getMessage();
+        }
+
         int longitudClave = clave.length;
         int n = texto.length();
         int resto = n % longitudClave;
@@ -32,7 +40,7 @@ public class CrifradoHill {
         int longitudClave = clave.length;
         int n = textoCifrado.length();
         StringBuilder textoDescifrado = new StringBuilder();
-        int[][] matrizInversa = Matriz.inversa(clave);
+        int[][] matrizInversa = inversa(clave);
         for (int i = 0; i < n; i += longitudClave) {
             int[] bloque = new int[longitudClave];
             for (int j = 0; j < longitudClave; j++) {
@@ -56,4 +64,5 @@ public class CrifradoHill {
     public static int letraANumero(char letra) {
         return (letra - 32 + Matriz.MOD) % Matriz.MOD;
     }
+
 }

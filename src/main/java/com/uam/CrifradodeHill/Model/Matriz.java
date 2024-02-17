@@ -1,5 +1,7 @@
 package com.uam.CrifradodeHill.Model;
 
+import java.util.Random;
+
 public class Matriz {
     public final static int MOD = 94;
 
@@ -8,9 +10,10 @@ public class Matriz {
         int columnasA = A[0].length;
         int filasB = B.length;
         int columnasB = B[0].length;
-
         // Verifica que las matrices se pueden multiplicar
         if (columnasA != filasB) {
+            System.out.println("Columnas A: " + columnasA);
+            System.out.println("Filas B: " + filasB);
             throw new IllegalArgumentException("Las matrices no son compatibles para multiplicación.");
         }
 
@@ -29,15 +32,16 @@ public class Matriz {
     }
 
     public static int[][] inversa(int[][] clave) {
+        int tam = clave.length;
         int det = Matriz.determinante(clave);
         int detInv = inversoModular(det); // Calcular el inverso modular del determinante
         if (detInv == -1) {
-            throw new ArithmeticException("La matriz no es invertible en módulo " + MOD);
+            throw new ArithmeticException("La matriz no es invertible en modulo " + MOD);
         }
         int[][] matrizAdjunta = Matriz.adjunta(clave);
-        int[][] matrizInversa = new int[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        int[][] matrizInversa = new int[tam][tam];
+        for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
                 matrizInversa[i][j] = ((matrizAdjunta[i][j] * detInv) % MOD + MOD) % MOD;
             }
         }
@@ -118,4 +122,34 @@ public class Matriz {
         }
         return transpuesta(adjunta);
     }
+
+    public static int[][] generaMatriz() {
+        int dimension = 3;
+        // Genera e inicializa la matriz identidad -----------------------
+        int[][] matrizInvertible = new int[dimension][dimension];
+        int aux = 0;
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                matrizInvertible[i][j] = i == aux && j == aux ? 1 : 0;
+            }
+            aux++;
+        }
+        // ---------------------------------------------------------------
+        Random random = new Random();
+        int delta = 20;
+        while (delta > 0) {
+            int filaSeleccionada = random.nextInt(dimension);
+            int escalar = random.nextInt(4) + 1;
+            int filaAModificar;
+            do {
+                filaAModificar = random.nextInt(dimension);
+            } while (filaAModificar == filaSeleccionada);
+            for (int j = 0; j < dimension; j++) {
+                matrizInvertible[filaAModificar][j] += matrizInvertible[filaSeleccionada][j] * escalar;
+            }
+            delta--;
+        }
+        return matrizInvertible;
+    }
+
 }
