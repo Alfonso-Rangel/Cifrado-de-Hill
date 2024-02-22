@@ -1,7 +1,7 @@
 package com.uam.CrifradodeHill.Controllers;
 import org.springframework.web.bind.annotation.*;
 
-import static com.uam.CrifradodeHill.Model.CrifradoHill.cifrar;
+import static com.uam.CrifradodeHill.Model.CifradoHill.cifrar;
 
 @RestController
 public class CifrarController {

@@ -1,6 +1,5 @@
 package com.uam.CrifradodeHill.Model;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MatrizTest {
@@ -18,48 +17,31 @@ public class MatrizTest {
 
         int[][] resultado = Matriz.multiplicacion(C, A);
 
-        double[][] esperado = {
+        int[][] esperado = {
                 {648, 1662, 1678, 1451, 2320},
                 {239, 654, 628, 541, 892},
                 {43, 124, 114, 98, 166}};
         assertArrayEquals(esperado, resultado);
     }
 
-    /*
     @Test
-    public void inversaTest() {
-        int[][] matriz = {
-                {1, 3},
-                {-2, 6}};
-
-        int[][] resultado = Matriz.inversa(matriz);
-
-        double[][] esperado = {
-                {0.5, -0.25},
-                {0.16666666666666666, 0.08333333333333333}};
-        assertArrayEquals(esperado, resultado);
+    public void multiplicacionMatrizNula() {
+        int[][] A = null;
+        int[][] B = {{1, 2}, {3, 4}};
+        assertThrows(IllegalArgumentException.class, () -> Matriz.multiplicacion(A, B));
     }
 
     @Test
-    public void inversaMatrizNoCuadrada() {
-        int[][] matriz = {
-                {1, 2, 3},
-                {4, 5, 6}};
-        assertThrows(IllegalArgumentException.class, () -> Matriz.inversa(matriz));
+    public void multiplicacionMatrizVacia() {
+        int[][] A = {};
+        int[][] B = {{1, 2}, {3, 4}};
+        assertThrows(IllegalArgumentException.class, () -> Matriz.multiplicacion(A, B));
     }
-     */
 
     @Test
-    public void determinanteTest() {
-        int[][] matriz = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}};
-
-        double resultado = Matriz.determinante(matriz);
-
-        double esperado = 0;
-        assertEquals(esperado, resultado, 0.001);
+    public void inversaMatrizNoInvertible() {
+        int[][] matriz = {{1, 2}, {2, 4}};
+        assertThrows(ArithmeticException.class, () -> Matriz.inversa(matriz));
     }
 
     @Test
@@ -74,4 +56,3 @@ public class MatrizTest {
         assertThrows(IllegalArgumentException.class, () -> Matriz.multiplicacion(A, B));
     }
 }
-

@@ -1,19 +1,52 @@
 package com.uam.CrifradodeHill.Model;
-
-import java.util.Random;
-
+/**
+ * Clase que contiene métodos para realizar operaciones con matrices.
+ * Los métodos de esta clase son estáticos y no se requiere instanciar la clase para utilizarlos.
+ * La clase contiene métodos para realizar las siguientes operaciones:
+ * - Multiplicación de matrices.
+ * - Cálculo del inverso modular de una matriz.
+ * - Cálculo del determinante de una matriz.
+ * @autor Alfonso-Rangel
+ */
 public class Matriz {
+    /**
+     * Módulo para realizar las operaciones de la matriz.
+     * Se utiliza el módulo 94 para que las operaciones se realicen en el rango de los caracteres imprimibles.
+     * Los caracteres imprimibles van del 32 al 126 en ASCII.
+     * Cambiar el módulo no afecta la funcionalidad de los métodos.
+     * Es public para que pueda leerse desde otras clases.
+     */
     public final static int MOD = 94;
 
+    /**
+     * Realiza la multiplicación de dos matrices enteras.
+     * Las matrices deben ser compatibles para la multiplicación.
+     *
+     * @param A La primera matriz a multiplicar de tamaño n×m.
+     * @param B La segunda matriz a multiplicar de tamaño m×p.
+     * @return Una nueva matriz de tamaño n×p, que es el resultado de la multiplicación de A y B.
+     * @throws IllegalArgumentException Si se cumple alguna de las siguientes condiciones:
+     *                                 - Una de las matrices es nula.
+     *                                 - Una de las matrices está vacía.
+     *                                 - Las matrices no son compatibles para multiplicación.
+     */
     public static int[][] multiplicacion(int[][] A, int[][] B) {
+        // Verifica que las matrices no sean nulas
+        if (A == null || B == null) {
+            throw new IllegalArgumentException("Una de las matrices es nula.");
+        }
+
+        // Verifica que las matrices no estén vacías
+        if (A.length == 0 || B.length == 0 || A[0].length == 0 || B[0].length == 0) {
+            throw new IllegalArgumentException("Una de las matrices está vacía.");
+        }
+
         int filasA = A.length;
         int columnasA = A[0].length;
         int filasB = B.length;
         int columnasB = B[0].length;
         // Verifica que las matrices se pueden multiplicar
         if (columnasA != filasB) {
-            System.out.println("Columnas A: " + columnasA);
-            System.out.println("Filas B: " + filasB);
             throw new IllegalArgumentException("Las matrices no son compatibles para multiplicación.");
         }
 
@@ -31,8 +64,19 @@ public class Matriz {
         return C;
     }
 
+    /**
+     * Calcula la inversa modular de una matriz cuadrada dada.
+     * @param clave La matriz cuadrada de la cual se desea calcular la inversa.
+     *              La matriz debe ser cuadrada, no nula y no vacía.
+     * @return La matriz inversa de la matriz dada.
+     * @throws ArithmeticException Si la matriz no es invertible en el módulo MOD.
+     * @throws IllegalArgumentException Si la matriz no es cuadrada.
+     */
     public static int[][] inversa(int[][] clave) {
         int tam = clave.length;
+        if (tam != clave[0].length) {
+            throw new IllegalArgumentException("La matriz no es cuadrada");
+        }
         int det = Matriz.determinante(clave);
         int detInv = inversoModular(det); // Calcular el inverso modular del determinante
         if (detInv == -1) {
@@ -48,7 +92,12 @@ public class Matriz {
         return matrizInversa;
     }
 
-    // Función para obtener el inverso modular de un número
+    /**
+     * Calcula el inverso modular de un número entero.
+     *
+     * @param num El número del cual se quiere calcular el inverso modular.
+     * @return El inverso modular de num si existe, -1 en caso contrario.
+     */
     private static int inversoModular(int num) {
         num = num % MOD;
         for (int x = 1; x < MOD; x++) {
@@ -59,7 +108,14 @@ public class Matriz {
         return -1; // Retornar -1 si el inverso modular no existe
     }
 
-    static int determinante(int[][] matriz) {
+    /**
+     * Calcula el determinante de una matriz cuadrada utilizando el método de Laplace.
+     * El método asume que la matriz es cuadrada.
+     *
+     * @param matriz La matriz cuadrada de la cual se quiere calcular el determinante.
+     * @return El valor del determinante de la matriz.
+     */
+    private static int determinante(int[][] matriz) {
         int tam = matriz[0].length;
         if (tam == 1) {
             return matriz[0][0];
@@ -77,6 +133,19 @@ public class Matriz {
         }
     }
 
+    /**
+     * Método utilizado como auxiliar para calcular la matriz de cofactores.
+     * Crea y devuelve una submatriz de una matriz dada eliminando una fila y una columna específicadas.
+     * La submatriz es una matriz cuadrada de un tamaño menor en 1 a la matriz original.
+     *
+     * @param matriz   La matriz de la cual se desea crear la submatriz.
+     *                 La matriz debe ser cuadrada.
+     * @param fila     La fila que se eliminará de la matriz para crear la submatriz.
+     *                 Debe ser un número entre 0 y n-1, donde n es el tamaño de la matriz.
+     * @param columna  La columna que se eliminará de la matriz para crear la submatriz.
+     *                 Debe ser un número entre 0 y n-1, donde n es el tamaño de la matriz.
+     * @return Una nueva matriz que representa la submatriz.
+     */
     private static int[][] creaSubMatriz(int[][] matriz, int fila, int columna) {
         int n = matriz[0].length;
         int[][] subMatriz = new int[n - 1][n - 1];
@@ -100,6 +169,13 @@ public class Matriz {
         return subMatriz;
     }
 
+    /**
+     * Calcula la transpuesta de una matriz cuadrada dada.
+     *
+     * @param matriz La matriz cuadrada de la cual se desea calcular la transpuesta.
+     *               La matriz debe ser cuadrada, no nula y no vacía.
+     * @return La transpuesta de la matriz dada.
+     */
     private static int[][] transpuesta(int[][] matriz) {
         int tam = matriz[0].length;
         int[][] t =  new int[tam][tam];
@@ -111,6 +187,15 @@ public class Matriz {
         return t;
     }
 
+    /**
+     * Calcula la matriz adjunta de una matriz cuadrada dada.
+     * La matriz adjunta es la transpuesta de la matriz de cofactores.
+     *
+     * @param matriz La matriz cuadrada de la cual se desea calcular la matriz adjunta.
+     *               La matriz debe ser cuadrada, no nula y no vacía.
+     * @return La matriz adjunta de la matriz dada.
+     * @see #transpuesta(int[][])
+     */
     private static int[][] adjunta(int[][] matriz) {
         int tam = matriz[0].length;
         int[][] adjunta = new int[tam][tam];
@@ -122,34 +207,4 @@ public class Matriz {
         }
         return transpuesta(adjunta);
     }
-
-    public static int[][] generaMatriz() {
-        int dimension = 3;
-        // Genera e inicializa la matriz identidad -----------------------
-        int[][] matrizInvertible = new int[dimension][dimension];
-        int aux = 0;
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
-                matrizInvertible[i][j] = i == aux && j == aux ? 1 : 0;
-            }
-            aux++;
-        }
-        // ---------------------------------------------------------------
-        Random random = new Random();
-        int delta = 20;
-        while (delta > 0) {
-            int filaSeleccionada = random.nextInt(dimension);
-            int escalar = random.nextInt(4) + 1;
-            int filaAModificar;
-            do {
-                filaAModificar = random.nextInt(dimension);
-            } while (filaAModificar == filaSeleccionada);
-            for (int j = 0; j < dimension; j++) {
-                matrizInvertible[filaAModificar][j] += matrizInvertible[filaSeleccionada][j] * escalar;
-            }
-            delta--;
-        }
-        return matrizInvertible;
-    }
-
 }

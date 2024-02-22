@@ -1,6 +1,6 @@
 package com.uam.CrifradodeHill.Controllers;
 import org.springframework.web.bind.annotation.*;
-import static com.uam.CrifradodeHill.Model.CrifradoHill.descifrar;
+import static com.uam.CrifradodeHill.Model.CifradoHill.descifrar;
 
 @RestController
 public class DescifrarController {
