@@ -6,7 +6,7 @@ package com.uam.CrifradodeHill.Model;
  * - Multiplicación de matrices.
  * - Cálculo del inverso modular de una matriz.
  * - Cálculo del determinante de una matriz.
- * @autor Alfonso-Rangel
+ * @author Alfonso-Rangel
  */
 public class Matriz {
     /**

@@ -8,7 +8,7 @@ import static com.uam.CrifradodeHill.Model.Matriz.inversa;
  * La clase contiene métodos para cifrar y descifrar un texto, dada una clave.
  * Además, contiene métodos para generar una clave aleatoria.
  * Los métodos de esta clase son estáticos y no se requiere instanciar la clase para utilizarlos.
- * @autor Alfonso-Rangel
+ * @author Alfonso-Rangel
  */
 public class CifradoHill {
 
@@ -16,33 +16,41 @@ public class CifradoHill {
      * Cifra un texto utilizando el cifrado de Hill con una clave dada.
      *
      * @param texto El texto a cifrar.
-     * @param clave La matriz cuadrada que representa la clave del cifrado.
+     * @param clave Texto que representa la clave del cifrado.
      * @return El texto cifrado. Si la clave no es invertible, se devuelve un mensaje de error.
      */
-    public static String cifrar(String texto, int[][] clave) {
+    public static String cifrar(String texto, String clave) {
+        int[][] claveMatriz;
         try {
-            inversa(clave);
+            claveMatriz = textoAMatriz(clave);
+            inversa(claveMatriz);
         } catch (ArithmeticException | IllegalArgumentException e) {
             return e.getMessage();
         }
         // Se añaden espacios al final para completar el múltiplo y que sea compatible para la multiplicación con la clave
-        int resto = texto.length() % clave.length;
+        int resto = texto.length() % claveMatriz.length;
         if (resto != 0) {
-            texto += " ".repeat(clave.length - resto); // Se añaden espacios al final para completar el múltiplo
+            texto += " ".repeat(claveMatriz.length - resto); // Se añaden espacios al final para completar el múltiplo
         }
 
-        return aplicarConversion(texto, clave);
+        return aplicarConversion(texto, claveMatriz);
     }
 
     /**
      * Descifra un texto cifrado utilizando el cifrado de Hill con una clave dada.
      *
      * @param textoCifrado El texto cifrado a descifrar.
-     * @param clave        La matriz cuadrada que representa la clave del cifrado.
+     * @param clave        Texto que representa la clave del cifrado.
      * @return El texto descifrado. Si la clave no es invertible, se devuelve un mensaje de error.
      */
-    public static String descifrar(String textoCifrado, int[][] clave) {
-        int[][] matrizInversa = inversa(clave);
+    public static String descifrar(String textoCifrado, String clave) {
+        int[][] claveMatriz;
+        try {
+            claveMatriz = textoAMatriz(clave);
+        } catch (ArithmeticException | IllegalArgumentException e) {
+            return e.getMessage();
+        }
+        int[][] matrizInversa = inversa(claveMatriz);
         return aplicarConversion(textoCifrado, matrizInversa);
     }
 
@@ -84,7 +92,7 @@ public class CifradoHill {
      * @return El caracter correspondiente al número.
      * @see Matriz#MOD
      */
-    public static char numeroALetra(int numero) {
+    private static char numeroALetra(int numero) {
         // Se le suma el 32 p|ara que el rango de caracteres sea de 32 a 126.
         return (char) ((numero + Matriz.MOD) % Matriz.MOD + 32);
     }
@@ -96,9 +104,34 @@ public class CifradoHill {
      * @return El número entero correspondiente al caracter.
      * @see Matriz#MOD
      */
-    public static int letraANumero(char letra) {
+    private static int letraANumero(char letra) {
         // Se le resta el 32 para que el rango de caracteres sea de 32 a 126.
         return (letra - 32 + Matriz.MOD) % Matriz.MOD;
+    }
+
+    /**
+     * Convierte un texto que representa una clave a una matriz cuadrada.
+     * @param clave El texto que representa la clave.
+     * @return La matriz cuadrada generada a partir del texto.
+     * @throws IllegalArgumentException Si el texto no forma una matriz cuadrada.
+     */
+    private static int[][] textoAMatriz(String clave) {
+        String[] matrizClave = clave.split(" ");
+
+        int tam = (int) Math.sqrt(matrizClave.length);
+        if (Math.pow(tam, 2) != matrizClave.length) {
+            throw new IllegalArgumentException("La clave no forma una matriz cuadrada.");
+        }
+        int[][] matriz = new int[tam][tam];
+        int i = 0, j = 0;
+        for (String valor : matrizClave) {
+            matriz[i][j++] = Integer.parseInt(valor);
+            if (j == tam) {
+                i++;
+                j = 0;
+            }
+        }
+        return matriz;
     }
 
     /**

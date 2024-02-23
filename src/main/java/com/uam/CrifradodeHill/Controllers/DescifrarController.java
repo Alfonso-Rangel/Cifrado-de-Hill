@@ -9,22 +9,7 @@ public class DescifrarController {
     public String desencriptarTexto(@RequestBody TextoConClave textoConClave) {
         String texto = textoConClave.getTexto();
         String clave = textoConClave.getClave();
-        String[] claveMatriz = clave.split(" ");
-
-        int tam = (int) Math.sqrt(claveMatriz.length);
-        if (Math.pow(tam, 2) != claveMatriz.length) {
-            return "El texto no forma una matriz cuadrada.";
-        }
-        int[][] matriz = new int[tam][tam];
-        int i = 0, j = 0;
-        for (String valor : claveMatriz) {
-            matriz[i][j++] = Integer.parseInt(valor);
-            if (j == tam) {
-                i++;
-                j = 0;
-            }
-        }
-        return descifrar(texto, matriz);
+        return descifrar(texto, clave);
     }
 
     public static class TextoConClave {
