@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CifradoTest {
     @Test
     public void cifradoTest() {
-        String texto = "Hola, esto es una prueba";
+        // Considerar que el descifrado a veces agrega espacio en blanco al final del texto
+        // No es un problema para el funcionamiento del programa
+        String texto = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_abcdefghijklmnopqrstuvwxyz{|}";
         String clave = "1 1 0 2 3 1 1 1 1";
         // Cifrar el texto
         String textoCifrado = CifradoHill.cifrar(texto, clave);

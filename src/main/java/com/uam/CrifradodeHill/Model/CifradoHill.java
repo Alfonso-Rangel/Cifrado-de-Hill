@@ -20,6 +20,7 @@ public class CifradoHill {
      * @return El texto cifrado. Si la clave no es invertible, se devuelve un mensaje de error.
      */
     public static String cifrar(String texto, String clave) {
+        texto = texto.replaceAll("\n", " ");
         int[][] claveMatriz;
         try {
             claveMatriz = textoAMatriz(clave);
@@ -93,7 +94,7 @@ public class CifradoHill {
      * @see Matriz#MOD
      */
     private static char numeroALetra(int numero) {
-        // Se le suma el 32 p|ara que el rango de caracteres sea de 32 a 126.
+        // Se le suma el 32 para que el rango de caracteres sea de 32 a 126.
         return (char) ((numero + Matriz.MOD) % Matriz.MOD + 32);
     }
 

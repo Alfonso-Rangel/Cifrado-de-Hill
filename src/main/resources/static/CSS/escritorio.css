@@ -195,6 +195,22 @@ ul.password-validations li.valid {
     right: 0;
 }
 
+#boton-copiar-clave {
+    background-color: #D8DFE8;
+    border: 0.15rem solid #0A3871;
+    color: #0A3871;
+    cursor: pointer;
+}
+#boton-copiar-clave:hover {
+    color: #D8DFE8;
+    background-color: #0A3871;
+    transform: translateY(-1px);
+}
+
+#boton-copiar-clave:active {
+    background-color: green;
+    transform: translateY(0);
+}
 /* ----- ----- ----- COPIAR TEXTO ----- ----- ----- */
 #simbolo-hecho {
     display: none;
